@@ -1,0 +1,43 @@
+<% include ./partials/header.ejs %>
+
+
+
+<div id="full-height" class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <p class="h1 mb-3">Zaloguj się</p>
+
+      <form method="POST" action="/auth/login">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Adres email</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Hasło</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+  </div>
+  <p>Nie masz konta? <a href="/auth/register">Zarejestruj się tutaj</a></p>
+  <button type="submit" class="btn btn-block btn-primary">Zaloguj</button>
+</form>
+    </div>
+    <div class="w-100 mt-5"></div>
+    <div class="col-md-6">
+       <a href="/auth/facebook" class="auth-block"><button type="button" id="fb-login" class="btn btn-lg btn-block"><div class="d-flex justify-content-between">
+        <div class="small"><i class="fab fa-facebook-f text-white"></i></div>
+        <div class="small text-white">Logowanie przez Facebook'a</div>
+        <div class="p-1"></div>
+      </div></button></a>
+      <a href="/auth/google" class="auth-block mt-2"><button type="button" id="gplus-login" class="btn btn-lg btn-block"><div class="d-flex justify-content-between">
+        <div class="small"><i class="fab fa-google-plus-g text-white"></i></div>
+        <div class="small text-white">Logowanie przez Google Plus</div>
+        <div class="p-1"></div>
+      </div></button></a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<% include ./partials/footer.ejs %>

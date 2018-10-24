@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stronka admina</title>
+
+	<style type="text/css">
+		p{
+			display: inline-block;
+			width:20%;
+		}
+		div{
+			margin-bottom:60px;
+		}
+	</style>
+</head>
+<body>
+
+<h1>SPOTY</h1>
+<% spots.forEach(function(e,i){ %>
+<div>
+<form action="/admin/submitSpot" method="POST">
+	<p>nazwa spota
+	<input type="text" name="spot[name]" value="<%= e.name %>">
+	</p>
+	<p>Id spota
+	<input type="text" name="id" value="<%= e._id %>">
+	</p>
+	<p>opis
+	<input type="text" name="spot[description]" value="<%= e.description %>">
+	</p>
+	<p>ocena nawierzchni
+	<input type="text" name="spot[surface]" value="<%= e.surface %>">
+	</p>
+	<p>lat lng
+	<input type="text" name="spot[latLng]" value="<%= e.latLng %>">
+	</p>
+	<p>data
+	<input  type="text" name="spot[date]" value="<%= e.date %>">
+	</p>
+	<p>adres
+	<input  type="text" name="spot[address]" value="<%= e.address %>">
+	</p>
+
+	<p>przeszkody
+	 <% for(var key in e.obstacles) { %>
+
+	 <% if (e.obstacles[key] === 'on') { %>
+	 	<p><%= key %>
+	 	<input type="text" name="spot[obstacles][<%=key%>]" value="<%= e.obstacles[key] %>" >
+	 	</p>
+	 	<% } %>
+	 <% } %>
+	 </p>
+	 <p> id autora 
+	 <input type="text" name="spot[author][id]" value="<%= e.author.id %>">
+	 </p>
+	 <p>nazwa autora
+	 <input type="text" name="spot[author][username]" value="<%= e.author.username %>">
+	 </p>
+	 <p>fotki
+	  <% e.photo.forEach(function(x,y){ %>
+	  
+	  <p>fotka
+	 	<input type="text" name="spot[photo][<%=y%>]" value="<%= x %>" >
+	 </p>
+	 <hr>
+	  <% }); %>
+	  </p>
+	<button name="add" value="true" type="submit">Dodaj</button>
+	<button name="delete" value="true" type="submit">Usun</button>
+</form>
+</div>
+<% }); %>
+<hr><hr><hr>
+
+<h1>FOTKI</h1>
+<% photos.forEach(function(e){ %>
+<form method="POST" action="/admin/submitPhoto">
+		<p>Zdjęcia do <%= e.spot.name  %></p>
+			<% e.photo.forEach(function(x){ %>
+				<p><input type="text" name="photo" value="<%= x %>"></p>
+			<% }); %>
+			<p>Id spota</p>
+			<input name="spotId" type="text" value="<%= e.spot.id%>"> 
+			<p>id edytującego</p>
+			<input name="editorId" type="text" value="<%= e.editor.id%>"> 
+			<p>id fotek</p>
+			<input name="id" type="text" value="<%= e._id%>">
+
+	<button name="add" value="true" type="submit">Dodaj</button>
+	<button name="delete" value="true" type="submit">Usun</button>
+</form>
+<hr>
+<% }); %>
+
+
+
+
+</body>
+</html>

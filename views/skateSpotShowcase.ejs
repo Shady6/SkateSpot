@@ -1,0 +1,16 @@
+<% include ./partials/header.ejs %>
+<h1>welcome to the spot page</h1>
+
+<h2><%= spot.name %></h2>
+<p><%= spot.description %></p>
+<p>Nawierzchnia <%= spot.surface %>/10</p>
+<ul>
+
+<%  for (let key in spot.obstacles ) {	%>			
+			<% if (spot.obstacles[key] === 'on') { %>
+				<li><%=key%></li>
+			<% } %>		
+<%  } %>
+			
+</ul>
+<% include ./partials/footer.ejs %>

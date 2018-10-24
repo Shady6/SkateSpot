@@ -1,0 +1,179 @@
+
+
+html, body{
+	height:100%;
+}
+
+body{
+	flex-flow:column;
+	display: flex;
+}
+
+ #map{
+	flex: 1 1 auto;
+}
+
+#wrapper{
+	position:absolute;
+	top:56px;
+	left:0px;
+	width:25%;
+	height:100%;
+	background:white;
+	overflow-y: auto;
+	transition:all .3s ease;
+}
+
+.nowidth{
+	width:0 !important;
+}
+
+.paragraph{
+	padding-right: 3%;
+	padding-left: 3%;
+	margin-bottom:0;
+	width:100%;
+	overflow-wrap: break-word;
+}
+
+div .paragraph > span, div .mt-5 > a.paragraph{
+	margin-right:3%;
+}
+
+#image-wrapper{
+	position:relative;
+	width:100%;
+	height:300px;
+	background: rgba(194,194,194,1);
+}
+
+.slider{
+	width:100%;
+	height:300px;
+	background-repeat:no-repeat;
+	background-size:cover;
+	transition: all .4s ease;
+}
+
+#image-div0{
+	position: relative;
+	z-index: 1;
+
+}
+
+#image-div1{
+	position:absolute;
+	top:0;
+	z-index: 2;
+	opacity:0;
+
+}
+
+#image-div2{
+	position:absolute;
+	top:0;
+	z-index: 3;
+	opacity:0;
+
+}
+
+#image-div3{
+	position:absolute;
+	top:0;
+	z-index: 4;
+	opacity:0;
+
+}
+
+#image-div4{
+	position:absolute;
+	top:0;
+	z-index: 5;
+	opacity:0;
+
+}
+
+
+
+div #image-wrapper > i{
+	font-size:1.5rem;
+	color:#cccccc;
+	z-index: 10;
+	position:absolute;
+	top:47%;
+	cursor:pointer;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, .7);
+	transition: all .2s linear;
+	display: none;
+}
+
+div #image-wrapper > i:hover{
+	color:#bbb;
+}
+
+div #image-wrapper > i:active{
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, .7);
+}
+
+.right{
+	right:3%;
+}
+.left{
+	left:3%;
+}
+
+
+
+#hide{
+	position:absolute;
+	right:12px;
+	top:8px;
+	font-size:1.5rem;
+	color:#cccccc;
+	z-index: 10;
+	cursor:pointer;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, .7);
+	transition: all .2s linear;
+}
+
+#hide:hover{
+	color:#bbb;
+}
+
+#hide:active{
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, .7);
+}
+
+#no-photo-div{
+	position: relative;
+	top:40%;
+	text-align: center;
+}
+
+#tittleOfSpot{
+	font-weight: 700;
+}
+
+#surfaceScoreOfSpot{
+	margin-right:0;
+}
+
+.small-text{
+	font-size:0.9rem;
+}
+
+#compass{
+	font-size:1.5rem;
+}
+
+@media (max-width: 1100px){
+	#wrapper{
+		width:35%;
+	}
+}
+
+@media (max-width: 700px){
+	#wrapper{
+		width:100%;
+	}
+}

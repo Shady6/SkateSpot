@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Wszystkie polskie skate spoty w jednym miejscu">
+    <meta name="keywords" content="skatespot, spot, deskorolka, miejsca do jazdy">
+
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
+    <!--  Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Lato:400,700" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
+	<!-- Auth styles -->
+    <% if(path === '/register' || path === '/login'){ %>
+    	 <link rel="stylesheet" type="text/css" href="/stylesheets/auth.css">
+    <% } %>
+
+    <!-- Add spot styles -->
+    <% if(path === '/add'){ %>
+    	 <link rel="stylesheet" type="text/css" href="/stylesheets/add.css">
+    <% } %>
+    
+    <!-- Map with all the spots -->
+    <% if(path === '/all'){ %>
+    	 <link rel="stylesheet" type="text/css" href="/stylesheets/allSpotsMap.css">
+    <% } %>
+
+    <!-- Index home page -->
+    <% if(path === '/' ){ %>
+    	 <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <% } %>
+
+    <title>SkateSpot</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md navbar-light" id="navigation">
+
+        <% if (signupMessage.length > 0) { %>
+        <div id="alert" class="no-height flowing-alert container"><div class="alert alert-danger"><%= signupMessage %></div></div>
+ <% } %>
+
+ <% if (loginMessage.length > 0) { %>
+        <div id="alert" class="no-height flowing-alert container"><div class="alert alert-danger"><%= loginMessage %></div></div>
+<% } %>
+
+<% if (notLoggedIn.length > 0) { %>
+        <div id="alert" class="no-height flowing-alert container"><div class="alert alert-danger"><%= notLoggedIn %></div></div>
+<% } %>
+
+<% if (success.length > 0) { %>
+        <div id="alert" class="no-height flowing-alert container"><div class="alert alert-success"><%= success %></div></div>
+<% } %>
+
+<% if (failure.length > 0) { %>
+        <div id="alert" class="no-height flowing-alert container"><div class="alert alert-danger"><%= failure %></div></div>
+<% } %>
+
+	  	<a class="navbar-brand h1 mb-0 text-md-center" href="/">Skate<span class="text-success">Spot</span></a>
+	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  	</button>
+
+	  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		   	<ul class="navbar-nav ml-auto justify-content-end">
+		   		<% if (!currentUser) {  %>
+		   			<li class="nav-item mr-3">
+	        		<a class="nav-link" href="/auth/login">Login</a>
+		      		</li>
+
+		      		<li class="nav-item mr-3">
+		        		<a class="nav-link" href="/auth/register">Rejestracja</a>
+		      		</li>
+		   		<% } else { %>
+	      			
+
+	      			<li class="nav-item mr-3">
+	        		<a class="nav-link" ><%  if (!!currentUser.google.username) { %>
+
+		<!-- Gets the username, has to check if it is local, google, or facebook -->
+		
+		<%= currentUser.google.username %>
+
+ 		<% } else if (!!currentUser.local.username) { %>
+
+		<%= currentUser.local.username %>
+		
+		<%	} else if (!!currentUser.facebook.username) { %>
+
+		<%= currentUser.facebook.username %>
+		
+		<% } %> </a>
+					
+					</li>
+
+	      			<li class="nav-item mr-3">
+	        			<a class="nav-link" href="/auth/logout">Wyloguj</a>
+	      			</li>
+	      				
+	      		<%  } %>
+	      		
+		    </ul>
+
+	    </div>
+</nav>
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,47 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-12 mt-5">
+			<h4 class="text-center">Dodawanie zdjęć do spota - <%= name %></h4>
+			<p class="text-center">Możesz dodać od jednego do pięciu zdjęć</p>
+
+
+
+			<form method="POST" action="/spot/addPhoto/<%=id%>">
+				<div class="col-12" id="links"> 
+				    <div class="input-group mt-3" id="single-link0">
+				    <input autocomplete="off"  name="photo" type="text" class="form-control" placeholder="link" aria-label="name" aria-describedby="basic-addon1">
+				    </div>
+				</div>
+				<div class="col-12" id="links"> 
+				    <div class="input-group mt-3" id="single-link0">
+				    <input autocomplete="off"  name="photo" type="text" class="form-control" placeholder="link" aria-label="name" aria-describedby="basic-addon1">
+				    </div>
+				</div> 
+				<div class="col-12" id="links"> 
+				    <div class="input-group mt-3" id="single-link0">
+				    <input autocomplete="off"  name="photo" type="text" class="form-control" placeholder="link" aria-label="name" aria-describedby="basic-addon1">
+				    </div>
+				</div> 
+				<div class="col-12" id="links"> 
+				    <div class="input-group mt-3" id="single-link0">
+				    <input autocomplete="off"  name="photo" type="text" class="form-control" placeholder="link" aria-label="name" aria-describedby="basic-addon1">
+				    </div>
+				</div> 
+				<div class="col-12" id="links"> 
+				    <div class="input-group mt-3" id="single-link0">
+				    <input autocomplete="off"  name="photo" type="text" class="form-control" placeholder="link" aria-label="name" aria-describedby="basic-addon1">
+				    </div>
+				</div>
+				<div class="col-12">
+					<button id="spot-add-btn" type="submit" class="mt-4 mb-2 btn btn-success btn-lg text-center">Dodaj</button>
+				</div> 
+				 
+			</form>
+
+		
+	</div>
+</div>
+
+<% include ./partials/footer.ejs %>

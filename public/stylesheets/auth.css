@@ -1,0 +1,31 @@
+html, body{
+	height: 100%;
+}
+
+#full-height{
+	height: 100%;
+}
+
+#fb-login{
+	background: #4267b2;
+}
+
+#fb-login:hover{
+	background: #3156a1;
+}
+
+#gplus-login{
+	background: #db4437;
+}
+
+#gplus-login:hover{
+	background: #ca3326;
+}
+
+.auth-block{
+	display: block;
+}
+
+.auth-block:hover{
+	text-decoration:none;
+}

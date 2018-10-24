@@ -1,0 +1,132 @@
+<% include ./partials/header.ejs %>
+
+<div style="display:none">
+<% spots.forEach(function(e,i){ %>
+  <input type="text" value="<%= e.latLng %>" class="spotsToAdd" >
+<% }) %>
+</div>
+
+<form class="pb-5" method="POST" action="/spot/add">
+  <div class="container">
+    <div class="row">
+
+    <div class="col-12">
+      <h3 class="mt-5 mb-3">Dodawanie Spota</h3>
+    </div>
+
+  <div class="col-12"> 
+    <div class="input-group mb-3">
+    <div class="input-group-prepend parent">
+      <span id="first-asterisk" class="asterisk">*</span><span class="input-group-text" id="basic-addon1">Nazawa</span>
+    </div>
+    <input autocomplete="off" required minlength="2" maxlength="50" name="spot[name]" type="text" class="form-control" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+    </div>
+</div> 
+
+<div class="col-12">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Opis</span>
+    </div>
+    <textarea autocomplete="off" maxlength="500" name="spot[description]" class="form-control" aria-label="With textarea"></textarea>
+  </div>
+</div>
+
+<div class="col-12 col-lg-4 mt-4" id="photo-upload">
+  <h6  class="mb-3 bold-label">Zdjęcia spota</h6>
+  <button type="button" id="link-btn"  class="btn btn-primary active" >Link</button>
+ <!--  <button type="button" id="fromComputer-btn" class="btn btn-primary">Z Komputera</button> -->
+  <button type="button" id="none-btn" class="btn btn-primary">Brak</button>
+</div>
+<div class="col-12" id="links"> 
+    <div class="input-group mt-3" id="single-link0">
+    <input autocomplete="off" required name="spot[photo]" type="text" class="form-control" placeholder="" aria-label="name" aria-describedby="basic-addon1">
+    </div>
+</div> 
+
+  </div>
+
+  <div class="row"> 
+    <div class="col mt-1">
+    <i id="add-photo" class="fas fa-plus-circle add-remove "></i>
+    <i id="remove-photo" class="fas fa-minus-circle add-remove"></i>
+  </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col mt-4 mb-2">
+      <h6><label class="bold-label" for="surface">Nawierzchnia (ocena)</label></h6>
+      <input autocomplete="off" name="spot[surface]" id="surfaceInput" class="slider" name="surface" type="range" min="0" max="10" step="1" value="5" />
+      <output name="surfaceOutput" id="surfaceOutput" class="ml-3">5</output> /10
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mt-4 mb-2">
+      <h6 class="bold-label">Przeszkody / Tagi</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-sm-4 col-6 mb-2"><button id="ledge" type="button" class="obstacle btn btn-light">Murki</button></div>
+    <div class="col-lg-2 col-sm-4 col-6"><button id="stairs" type="button" class="obstacle btn btn-light">Schody</button></div>
+    <div class="col-lg-2 col-sm-4 col-6 mb-2"><button id="quarter" type="button" class="obstacle btn btn-light">Quarter</button></div>
+    <div class="col-lg-2 col-sm-4 col-6"><button id="kicker" type="button" class="obstacle btn btn-light">Kickery</button></div>
+    <div class="col-lg-2 col-sm-4 col-6 mb-2"><button id="downhill" type="button" class="obstacle btn btn-light">Downhill</button></div>
+    <div class="col-lg-2 col-sm-4 col-6 mb-2"><button id="rail" type="button" class="obstacle btn btn-light">Rurki</button></div>
+    <div class="col-lg-2 col-sm-4 col-6 mb-2"><button id="bank" type="button" class="obstacle btn btn-light">Banki</button></div>
+    <div class="col-lg-2 col-sm-4 col-6"><button id="skatepark" type="button" class="obstacle btn btn-light">Skatepark</button></div>
+    <div class="col-lg-2 col-sm-4 col-6"><button id="flatground" type="button" class="obstacle btn btn-light">Flat</button></div>
+    <div class="col-lg-2 col-sm-4 col-6"><button id="manualpad" type="button" class="obstacle btn btn-light">Maunal Pady</button></div>
+  </div>
+
+  <div id="invisible-obstacles">
+    <input autocomplete="off" type="checkbox" id="ledge0" name="spot[obstacles][ledge]">
+    <input autocomplete="off" type="checkbox" id="stairs0" name="spot[obstacles][stairs]">
+    <input autocomplete="off" type="checkbox" id="quarter0" name="spot[obstacles][quarter]">
+    <input autocomplete="off" type="checkbox" id="kicker0" name="spot[obstacles][kicker]">
+    <input autocomplete="off" type="checkbox" id="downhill0" name="spot[obstacles][downhill]">
+    <input autocomplete="off" type="checkbox" id="rail0" name="spot[obstacles][rail]">
+    <input autocomplete="off" type="checkbox" id="bank0" name="spot[obstacles][bank]">
+    <input autocomplete="off" type="checkbox" id="skatepark0" name="spot[obstacles][skatepark]">
+    <input autocomplete="off" type="checkbox" id="flatground0" name="spot[obstacles][flatground]">
+    <input autocomplete="off" type="checkbox" id="manualpad0" name="spot[obstacles][manualpad]">
+  </div>
+
+    <div class="row mt-4">
+      <div class="col-12 mb-2">
+        <span class="asterisk">*</span><h6 class="bold-label">Dodaj lokalizację <i id="info" data-offset='10, 0' data-toggle="tooltip" data-placement="top" title="Zaznacz spota klikając na mapę. Możesz również wyszukać daną miejscowość." class=" fas fa-info-circle"></i></h6>
+      </div>
+      <div id="map" class="mb-2 ml-3 col-xl-12"></div>
+      <div id="legend"><h5>Legenda</h5></div>
+      <div class="col-lg-4">
+         <input id="address" type="text" class="form-control mb-2"  aria-describedby="basic-addon1">
+      </div>
+      <div class="col-lg-4">
+      <button id="find" type="button" class="btn btn-primary">Znajdź miejsce po adresie</button>
+      </div>
+      <div class="col-lg-4">
+      <i id="arrow-up" class="mt-2 fas fa-angle-double-up"></i>
+      </div>
+      <div class="w-100"></div>
+
+    </div>
+    <div id="allAddresses" class="ml-1 row mt-2" ></div>
+    <input required style="display:none" id="latLng" type="text" name="spot[latLng]">
+    <input style="display:none" id="dbAddress" type="text" name="spot[address]">
+    <div id="spot-add-btn-div" class="col-lg-4 pl-0 ">
+      <div id="note-latlng" class="no-width note-no-latlng">Musisz zaznaczyć spota klikając na mapę.</div>
+      <button id="spot-add-btn" type="submit" class="mt-4 mb-2 btn btn-success btn-lg  btn-block  text-center">Dodaj</button>
+    </div>
+
+    
+  
+
+ </div>
+</form>
+
+
+
+    
+
+<% include ./partials/footer.ejs %>
