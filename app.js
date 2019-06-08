@@ -29,7 +29,7 @@ app.use(express.static('public'));
 // required for passport
 app.use(session({
 	secret: process.env.COOKIE_SESSION_KEY,
-})); // session secret
+})); // session secretrs
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
