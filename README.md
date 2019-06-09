@@ -2,7 +2,7 @@
 
 ## Check out the web app
 
-Here you can see the page by yourself https://skatespot111.herokuapp.com/  To login you can use those credentials I made email : example@test.com   password : 123456
+Here you can see the page by yourself https://skatespot111.herokuapp.com/  To login you can use those credentials I made email : example@test.com   password : 123456 . Application is fully responsive so you can check it on any screen resolutions.
 
 ## Description
 
