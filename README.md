@@ -1,5 +1,11 @@
 # SkateSpot
 
+## Check out the web app
+
+Here you can see the page by yourself https://skatespot111.herokuapp.com/  To login you can use those credentials I made email : example@test.com   password : 123456
+
+## Description
+
 SkateSpot is a web application created for skateboarders and not only. The purpose of the webpage is to create a database of skateboarding spots (places where you can ride skateboard: skateparks, stairs, rails etc.). Users can add their own spots with extensive description which includes photos, tags, address and other things. Everyone can also view added places on the map by clicking the pin.
 
 ## Installs
