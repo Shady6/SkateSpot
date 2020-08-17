@@ -1,32 +1,42 @@
-# SkateSpot
+# Video Showcase
+[https://www.youtube.com/watch?v=1lxbaZAJ3rc](https://www.youtube.com/watch?v=1lxbaZAJ3rc)
+# Live Version
+### Disclaimer
+Before trying out the website I have to inform that you'll get "For development purposes only" overlay while viewing map with spots. It is because of changes that google made to their billing model but the map is actually still working.  
 
-## Check out the web app
+You can try this web app by yourself here https://skatespot111.herokuapp.com/. To login you can use those example credentials I made - email : example@test.com   password : 123456.
+# SkateSpot - what is it about?
+SkateSpot is a web application created for skateboarders and all the people who do extreme sports on wheels. The purpose of the webpage is to create a database of skateboarding spots (places where you can ride skateboard: skateparks, stairs, rails etc.). Users can add their own spots with extensive description which includes photos, tags, address and other things. Everyone can also view added places on the map by clicking the pin. The Website is in Polish language because it was aimed at Polish audiance.
 
-Here you can see the page by yourself https://skatespot111.herokuapp.com/  To login you can use those credentials I made email : example@test.com   password : 123456 . Application is fully responsive so you can check it on any screen resolutions.
+# Screenshots
+![Home page](/screenshots/1.png?raw=true "Home page")
+![Adding spot page part 1](/screenshots/2.png?raw=true "Adding spot page part 1")
+![Adding spot page part 2](/screenshots/3.png?raw=true "Adding spot page part 2")
+![All spots page](/screenshots/4.png?raw=true "All spots page")
 
-## Description
+# How to run it?
 
-SkateSpot is a web application created for skateboarders and not only. The purpose of the webpage is to create a database of skateboarding spots (places where you can ride skateboard: skateparks, stairs, rails etc.). Users can add their own spots with extensive description which includes photos, tags, address and other things. Everyone can also view added places on the map by clicking the pin.
+### Prerequisites
+In order to run the application you'll need to have the following installed
+* NPM
+* MongoDB
+* Node.js
 
-## Installs
+### Starting the project
 
-To be able to run the project you'll have to have installed all of the followings: NPM, MongoDB, Node.js, Command Line (like GIT Bash, Cmder)
-
-## Running the app
-
-Run mongoDB server by opening the command line and executing
+1. Run mongoDB server by opening the command line and executing
 ```
 mongod
 ```
-Open other cmd in the project directory and run
+2. Run the following command in command line while in project directory
 ```
 npm i
 ```
-Then you just write
+3. write and execute
 ```
 node app.js
 ```
-And the app should be good to go. Open browser of your kind and in the url bar write localhost:3000 and you'll see the webpage.
+4. Open browser of your kind and in the url bar write localhost:3000 and you'll see the webpage.
 
 
 
