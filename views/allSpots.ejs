@@ -161,14 +161,15 @@
 					});
 				} else if (links.length === 0) {
 					document.querySelector('.right').style.display = 'none';
-					document.querySelector('.left').style.display = 'none';
-					var elm = document.createElement('div');
-					elm.className = 'no-photos';
-					elm.setAttribute('id', 'no-photo-div');
-					elm.innerHTML =
-						'<p>Masz zdjęcie tego spota?</p><p>Dodaj je <a href="/spot/addPhoto/' +
-						theSpot._id + '" >tutaj</a></p>'
-					document.getElementById('image-wrapper').appendChild(elm);
+						document.querySelector('.left').style.display = 'none';
+						var elm = document.createElement('div');
+						elm.className = 'no-photos';
+						elm.setAttribute('id', 'no-photo-div');
+						let isEng = getCookie("language") == "en";
+						elm.innerHTML =
+							'<p id="have-photos-of-spot">'+(isEng ? "Have photos of this spot?" : "Masz zdjęcie tego spota?")+'</p><p id="add-them">'+(isEng ? "Add them" : "Dodaj je")+' <a id="here" href="/spot/addPhoto/' +
+							theSpot._id + '" >'+(isEng ? "here" : "tutaj")+'</a></p>'
+						document.getElementById('image-wrapper').appendChild(elm);
 				}
 
 				var old_element = document.querySelector('.right');

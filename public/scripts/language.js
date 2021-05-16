@@ -174,6 +174,26 @@ const translations = {
     "#logout": {
         "en": "Logout",
         "pl": "Wyloguj"
+    },
+    "#photo-adding": {
+        "en": "Adding photos to - ",
+        "pl": "Dodawanie zdjęć do spota - "
+    },
+    "#up-to-5-photos": {
+        "en": "You can add from 1 to 5 spot photos",
+        "pl": "Możesz dodać od jednego do pięciu zdjęć"
+    },
+    "#have-photos-of-spot": {
+        "en": "Have photos of this spot?",
+        "pl": "Masz zdjęcie tego spota?"
+    },
+    "#add-them": {
+        "en": "Add them ",
+        "pl": "Dodaj je "
+    },
+    "#here": {
+        "en": "here",
+        "pl": "tutaj"
     }
 }
 
