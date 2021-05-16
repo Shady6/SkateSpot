@@ -1,9 +1,10 @@
 var router = require('express').Router(),
-passport   = require('passport');
+	passport = require('passport');
 
+let translate = require("../get_translation");
 
 //  register get and post routes
-router.get('/register', function(req, res){
+router.get('/register', function (req, res) {
 	res.render('register', {
 		path: req.route.path
 	});
@@ -16,7 +17,7 @@ router.post('/register', passport.authenticate('local-signup', {
 }));
 
 // login get and post routes
-router.get('/login', function(req, res){
+router.get('/login', function (req, res) {
 	res.render('login', {
 		path: req.route.path
 	});
@@ -31,7 +32,7 @@ router.post('/login', passport.authenticate('local-login', {
 // auth logout
 router.get('/logout', (req, res) => {
 	// handle with passport
-	req.flash('success', 'Wylogowano');
+	req.flash('success', translate(req.cookies, "logged-out"));
 	req.logout();
 	res.redirect('/')
 });
@@ -55,7 +56,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }));
 
 // callback route for facebook to redirect to
-router.get('/facebook/redirect', passport.authenticate('facebook' , {
+router.get('/facebook/redirect', passport.authenticate('facebook', {
 	successRedirect: '/',
 	failureRedirect: '/auth/login'
 }), (req, res) => {

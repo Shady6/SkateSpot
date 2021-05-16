@@ -6,19 +6,19 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
 
-      <p class="h1 mb-3">Zaloguj się</p>
+      <p id="login-text" class="h1 mb-3">Zaloguj się</p>
 
       <form method="POST" action="/auth/login">
   <div class="form-group">
-    <label for="exampleInputEmail1">Adres email</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+    <label id="email-address" for="exampleInputEmail1">Adres email</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Hasło</label>
-    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+    <label id="password" for="exampleInputPassword1">Hasło</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
   </div>
-  <p>Nie masz konta? <a href="/auth/register">Zarejestruj się tutaj</a></p>
-  <button type="submit" class="btn btn-block btn-primary">Zaloguj</button>
+  <p id="no-account">Nie masz konta? <a id="register-here" href="/auth/register">Zarejestruj się tutaj</a></p>
+  <button id="login-btn" type="submit" class="btn btn-block btn-primary">Zaloguj</button>
 </form>
     </div>
     <div class="w-100 mt-5"></div>

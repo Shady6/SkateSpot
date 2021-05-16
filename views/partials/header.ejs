@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -77,11 +77,11 @@
 		   	<ul class="navbar-nav ml-auto justify-content-end">
 		   		<% if (!currentUser) {  %>
 		   			<li class="nav-item mr-3">
-	        		<a class="nav-link" href="/auth/login">Login</a>
+	        		<a id="login-nav" class="nav-link" href="/auth/login">Login</a>
 		      		</li>
 
 		      		<li class="nav-item mr-3">
-		        		<a class="nav-link" href="/auth/register">Rejestracja</a>
+		        		<a id="register-nav"  class="nav-link" href="/auth/register">Rejestracja</a>
 		      		</li>
 		   		<% } else { %>
 	      			
@@ -106,10 +106,20 @@
 					</li>
 
 	      			<li class="nav-item mr-3">
-	        			<a class="nav-link" href="/auth/logout">Wyloguj</a>
+	        			<a id="logout" class="nav-link" href="/auth/logout">Wyloguj</a>
 	      			</li>
 	      				
 	      		<%  } %>
+                              <li class="nav-item mr-3">
+	        		<span id="lang-pl" class="nav-link">
+						<img class="lang-flag" src="/poland.png" alt="Poland flag">
+					</span>
+		      		</li>
+                                      <li class="nav-item mr-3">
+	        		<span id="lang-en" class="nav-link">
+						<img class="lang-flag" src="/united-kingdom.png" alt="UK flag">
+					</span>
+		      		</li>
 	      		
 		    </ul>
 

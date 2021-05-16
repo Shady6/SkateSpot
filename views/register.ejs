@@ -5,27 +5,27 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
 
-      <p class="h1 mb-3">Zarejestruj się</p>
+      <p id="register-text" class="h1 mb-3">Zarejestruj się</p>
 
       <form method="POST" action="/auth/register">
   <div class="form-group">
-    <label for="exampleInputEmail1">Adres email</label>
-    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+    <label id="email-address" for="exampleInputEmail1">Adres email</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Nazwa Użytkownika</label>
-    <input name="username" type="text" class="form-control"  placeholder="Nazwa">
+    <label id="username" for="exampleInputPassword1">Nazwa Użytkownika</label>
+    <input name="username" type="text" class="form-control" >
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Hasło</label>
-    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Hasło">
+    <label id="password" for="exampleInputPassword1">Hasło</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Powtórz hasło</label>
-    <input name="repeatPassword" type="password" class="form-control" placeholder="Hasło">
+    <label id="repeat-password" for="exampleInputPassword1">Powtórz hasło</label>
+    <input name="repeatPassword" type="password" class="form-control">
   </div>
-  <p>Masz już konto? <a href="/auth/login">Zaloguj się tutaj</a></p>
-  <button type="submit" class="btn btn-block btn-primary">Zarejestruj</button>
+  <p id="have-an-account">Masz już konto? <a id="login-here" href="/auth/login">Zaloguj się tutaj</a></p>
+  <button id="register-btn" type="submit" class="btn btn-block btn-primary">Zarejestruj</button>
 </form>
     </div>
     <div class="w-100 mt-5"></div>

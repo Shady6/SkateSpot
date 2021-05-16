@@ -1,98 +1,100 @@
 var express = require('express'),
-router 		= express.Router(),
-Skatespot   = require('../models/skatespot_model'),
-TemporarySkatespot   = require('../models/temporarySkatespot_model'),
-isLoggedIn  = require('../middleware/isLoggedIn');
+	router = express.Router(),
+	Skatespot = require('../models/skatespot_model'),
+	TemporarySkatespot = require('../models/temporarySkatespot_model'),
+	isLoggedIn = require('../middleware/isLoggedIn');
 TemporatyPhoto = require('../models/temporaryPhoto_model');
 
-router.get('/all', function(req, res){
-	Skatespot.find({}, function(err, allSpots){
+let translate = require("../get_translation");
+
+router.get('/all', function (req, res) {
+	Skatespot.find({}, function (err, allSpots) {
 		if (err) {
-			req.flash('failure', 'Błąd ścieżka spot all')
-      		return res.redirect('/');
+			req.flash('failure', translate(req.cookies, "spot-route-error"))
+			return res.redirect('/');
 		} else {
 			res.render('allSpots', {
-			allSpots: allSpots,
-			path: req.route.path
+				allSpots: allSpots,
+				path: req.route.path
 			});
 		}
 	});
-	
+
 });
 
-router.get('/add', isLoggedIn, function(req, res){
-	Skatespot.find({}, function(err, foundSpots){
+router.get('/add', isLoggedIn, function (req, res) {
+	Skatespot.find({}, function (err, foundSpots) {
 		if (err) {
-			req.flash('failure', 'Błąd ścieżka spot all')
-      		return res.redirect('/');
+			req.flash('failure', translate(req.cookies, "spot-route-error"))
+			return res.redirect('/');
 		} else {
 			res.render('add', {
-			path: req.route.path,
-			spots: foundSpots
-		});
+				path: req.route.path,
+				spots: foundSpots
+			});
 		}
 	});
-	
+
 });
 
-router.post('/add', isLoggedIn, function(req, res){
-	if (!req.body.spot.name){
-		req.flash('failure', 'Musisz dodać nazwę spota');
+router.post('/add', isLoggedIn, function (req, res) {
+	if (!req.body.spot.name) {
+		req.flash('failure', translate(req.cookies, "spot-no-name"));
 		return res.redirect('/spot/add');
 	}
-	if (req.body.spot.name.length < 2 || req.body.spot.name.length > 50){
-		req.flash('failure', 'Nazwa spota zbyt długa lub zbyt krótka');
+	if (req.body.spot.name.length < 2 || req.body.spot.name.length > 50) {
+		req.flash('failure', translate(req.cookies, "name-too-long"));
 		return res.redirect('/spot/add');
 	}
-	if (req.body.spot.description.length > 500 ){
-		req.flash('failure', 'Opis zbyt długi');
+	if (req.body.spot.description.length > 500) {
+		req.flash('failure', translate(req.cookies, "description-too-long"));
 		return res.redirect('/spot/add');
 	}
-	if ( (typeof req.body.spot.photo) === 'object' && req.body.spot.photo.length > 5){
-		req.flash('failure', 'Możesz dodać maksymalnie 5 zdjęć');
+	if ((typeof req.body.spot.photo) === 'object' && req.body.spot.photo.length > 5) {
+		req.flash('failure', translate(req.cookies, "photos-err"));
 		return res.redirect('/spot/add');
 	}
-	if (!req.body.spot.latLng){
-		req.flash('failure', 'Musisz zaznaczyć spota na mapie');
+	if (!req.body.spot.latLng) {
+		req.flash('failure', translate(req.cookies, "mark-err"));
 		return res.redirect('/spot/add');
 	}
-	if (Number(req.body.spot.surface) > 10 ) {
-		req.flash('failure', 'Ocena nie może być większa niż 10');
+	if (Number(req.body.spot.surface) > 10) {
+		req.flash('failure', translate(req.cookies, "surface-err"));
 		return res.redirect('/spot/add');
 	}
 	var skateSpot = req.body.spot;
 	var author = {};
 	author.id = req.user._id;
-	
 
-	function addUsername(username){
+
+	function addUsername(username) {
 		author.username = username;
 	}
 
-	if(!!req.user.google.username){
+	if (!!req.user.google.username) {
 		addUsername(req.user.google.username);
 	}
 
-	else if(!!req.user.local.username){
+	else if (!!req.user.local.username) {
 		addUsername(req.user.local.username);
 	}
 
-	else if(!!req.user.facebook.username){
+	else if (!!req.user.facebook.username) {
 		addUsername(req.user.facebook.username);
 	}
 
 	skateSpot.author = author;
 
-	
-	TemporarySkatespot.create(skateSpot, function(err, newlyCreated){
+
+	TemporarySkatespot.create(skateSpot, function (err, newlyCreated) {
 		if (err) {
-			req.flash('failure', 'Błąd ścieżka spot all')
-      		return res.redirect('/');
+			req.flash('failure', translate(req.cookies, "spot-route-error"))
+			return res.redirect('/');
 		} else {
-			req.flash('success', 'Spot dodany, oczekuje na weryfikacje.')
+			req.flash('success', translate(req.cookies, "verif-waiting"))
 			res.redirect('/');
 		}
-		
+
 	});
 });
 
@@ -107,39 +109,39 @@ router.post('/add', isLoggedIn, function(req, res){
 // 			});
 // 		}
 // 	});
-	
+
 // });
 
-router.get('/addPhoto/:idOfSpot', isLoggedIn ,function(req, res){
-	Skatespot.findOne({_id: req.params.idOfSpot}, function(err, foundSpot){
+router.get('/addPhoto/:idOfSpot', isLoggedIn, function (req, res) {
+	Skatespot.findOne({ _id: req.params.idOfSpot }, function (err, foundSpot) {
 		if (err) {
 			return res.redirect('/spot/all');
 		} else {
-			res.render('addPhoto', {name: foundSpot.name, id: foundSpot._id ,path: req.route.path});
+			res.render('addPhoto', { name: foundSpot.name, id: foundSpot._id, path: req.route.path });
 		}
 	});
 });
 
-router.post('/addPhoto/:idOfSpot', isLoggedIn ,function(req, res){
+router.post('/addPhoto/:idOfSpot', isLoggedIn, function (req, res) {
 	var photo = {};
 	var editor = {};
 	var allPhotos = [];
 	editor.id = req.user._id;
 
 
-	function addUsername(username){
+	function addUsername(username) {
 		editor.username = username;
 	}
 
-	if(!!req.user.google.username){
+	if (!!req.user.google.username) {
 		addUsername(req.user.google.username);
 	}
 
-	else if(!!req.user.local.username){
+	else if (!!req.user.local.username) {
 		addUsername(req.user.local.username);
 	}
 
-	else if(!!req.user.facebook.username){
+	else if (!!req.user.facebook.username) {
 		addUsername(req.user.facebook.username);
 	}
 
@@ -147,48 +149,48 @@ router.post('/addPhoto/:idOfSpot', isLoggedIn ,function(req, res){
 	photo.spot = {};
 	photo.spot.id = req.params.idOfSpot;;
 
-	req.body.photo.forEach(function(e){
-		if(e.length){
+	req.body.photo.forEach(function (e) {
+		if (e.length) {
 			allPhotos.push(e);
 		}
 	});
 
 	photo.photo = allPhotos;
-	
 
-	if (allPhotos.length === 0 ){
-		req.flash('failure', 'Nie dodałeś żadnego zdjęcia.');
+
+	if (allPhotos.length === 0) {
+		req.flash('failure', translate(req.cookies, "no-photos"));
 		return res.redirect('back');
 	}
 
-	if (allPhotos.length > 5 ){
-		req.flash('failure', 'Nie możesz dodać więcej niż 5 zdjęć.');
+	if (allPhotos.length > 5) {
+		req.flash('failure', translate(req.cookies, "photos-err"));
 		return res.redirect('back');
 	}
 
-	Skatespot.findOne({_id: photo.spot.id}, function(err, spot){
+	Skatespot.findOne({ _id: photo.spot.id }, function (err, spot) {
 		if (err) {
 			return res.redirect('/spot/all');
 		} else {
 			photo.spot.name = spot.name
-			TemporatyPhoto.create(photo, function(err, photo){
+			TemporatyPhoto.create(photo, function (err, photo) {
 				if (err) {
-					req.flash('failure', 'Błąd ścieżka spot all')
-      				return res.redirect('/spot/all');
+					req.flash('failure', translate(req.cookies, "spot-route-error"))
+					return res.redirect('/spot/all');
 				} else {
-					req.flash('success', 'Zdjęcia oczekują na weryfikacje.');
+					req.flash('success', translate(req.cookies, "photos-verif"));
 					return res.redirect('/');
 				}
 			});
 		}
 	});
 
-	
 
-	
+
+
 
 });
-	
+
 
 
 module.exports = router;

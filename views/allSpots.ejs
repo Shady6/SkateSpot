@@ -1,217 +1,240 @@
 <% include ./partials/header.ejs %>
 
-	<div id="map"></div>
-	<div id="wrapper" class="nowidth">
-		<div id="image-wrapper">
-			<i class="right fas fa-angle-right"></i>
-			<i class="left fas fa-angle-left"></i>
-		</div>
-		<div>
-			<p id="tittleOfSpot" class="text-left mt-2 paragraph">Tytuł spota</p>
-		</div>
-		<div>
-			<p class="small-text paragraph mt-2" id="descriptionOfSpot" class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+<div id="map"></div>
+<div id="wrapper" class="nowidth">
+	<div id="image-wrapper">
+		<i class="right fas fa-angle-right"></i>
+		<i class="left fas fa-angle-left"></i>
+	</div>
+	<div>
+		<p id="tittleOfSpot" class="text-left mt-2 paragraph">Tytuł spota</p>
+	</div>
+	<div>
+		<p class="small-text paragraph mt-2" id="descriptionOfSpot" class="text-left">Lorem ipsum dolor sit amet,
+			consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 			consequat.</p>
-			<hr>
-		</div>
+		<hr>
+	</div>
+	<div>
+		<p id="surface-score" class="mt-4 paragraph">Nawierzchnia </p>
+	</div>
+	<div>
+		<p class="small-text paragraph mt-2"><span id="surfaceScoreOfSpot"></span>/10</p>
+		<hr>
+	</div>
+	<div>
+		<p id="obstacles" class="mt-4 paragraph">Przeszkody/Tagi</p>
+		<div class="col-12 small-text mt-2 paragraph" id="tagsOfSpot"></div>
+	</div>
+	<hr>
+	<div>
+		<p id="address" class="mt-4 paragraph">Adres</p>
 		<div>
-			<p class="mt-4 paragraph">Nawierzchnia </p>
+			<p id="showcase-address" class="small-text paragraph mt-2"></p>
 		</div>
+		<hr>
+	</div>
+	<div>
+		<p id="added-by" class="mt-4 paragraph">Spota dodał: </p>
 		<div>
-			<p class="small-text paragraph mt-2"><span id="surfaceScoreOfSpot"></span>/10</p>
-			<hr>
+			<p id="ownerOfSpot" class="small-text paragraph mt-2">Mikolaj</p>
 		</div>
-		<div>
-			<p class="mt-4 paragraph">Przeszkody/Tagi</p>
-			<div class="col-12 small-text mt-2 paragraph" id="tagsOfSpot"></div>
-			</div>	
-			<hr>
-			<div>
-			<p class="mt-4 paragraph">Adres</p>
-			<div><p id="showcase-address" class="small-text paragraph mt-2"></p></div>
-			<hr>
-			</div>
-			<div>
-			<p class="mt-4 paragraph">Spota dodał: </p>
-			<div><p id="ownerOfSpot" class="small-text paragraph mt-2">Mikolaj</p></div>
-			</div>
-			<div id="link-n-arrow" class="mt-4">
-				<!-- <a class=" paragraph" id="showcaseOfSpot" href="">Strona spota</a> -->
-				<i id="hide" class="far fa-times-circle"></i>
-
-			</div>
-		</div>
+	</div>
+	<div id="link-n-arrow" class="mt-4">
+		<!-- <a class=" paragraph" id="showcaseOfSpot" href="">Strona spota</a> -->
+		<i id="hide" class="far fa-times-circle"></i>
 
 	</div>
-	
+</div>
 
-	
+</div>
 
 
-			  <script
-              src="https://code.jquery.com/jquery-3.3.1.min.js"
-              integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-              crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	function initMap(){};
+	function initMap() {};
 
-$(document).ready(function(){
-var map;
-var step = 0;
-	function initMap(){
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: 52.237049, lng: 21.017532},
-  			zoom: 6
-		});
-	}
-	initMap();
+	$(document).ready(function () {
+		var map;
+		var step = 0;
 
-	var allSpots = <%- JSON.stringify(allSpots) %>;
-	var latLngs = [];
-	allSpots.forEach(function(e){
-		var position = e.latLng;
-		e.latLng = {lat: Number(position.split(",")[0]), lng: Number(position.split(",")[1]) }
-		latLngs.push(e.latLng);
-	});
-	
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {
+					lat: 52.237049,
+					lng: 21.017532
+				},
+				zoom: 6
+			});
+		}
+		initMap();
 
-function slideLeft(quantity, photos){
-		if (step === 0) {
-				step = quantity-1;
-				photos[0].style.opacity = '0';
-				photos[(quantity-1)].style.opacity = '1';
+		var allSpots = <%- JSON.stringify(allSpots) %>
+		var latLngs = [];
+		allSpots.forEach(function (e) {
+			var position = e.latLng;
+			e.latLng = {
+				lat: Number(position.split(",")[0]),
+				lng: Number(position.split(",")[1])
 			}
-			else {
+			latLngs.push(e.latLng);
+		});
+
+
+		function slideLeft(quantity, photos) {
+			if (step === 0) {
+				step = quantity - 1;
+				photos[0].style.opacity = '0';
+				photos[(quantity - 1)].style.opacity = '1';
+			} else {
 				photos[step].style.opacity = '0';
 				step--;
 				photos[step].style.opacity = '1';
 			}
-	}
-
-		function slideRight(quantity, photos){
-		if (step === (quantity-1)) {
-			step = 0;
-			photos[0].style.opacity = '1';
-			photos[photos.length-1].style.opacity = '0';
-		} else {
-			photos[step].style.opacity = '0';
-			step++;
-			photos[step].style.opacity = '1';
 		}
-	}
-	
 
-	var markers = latLngs.map(function(location){
-		return new google.maps.Marker({
-			position: location
-		});
-	});
-
-	markers.forEach(function(e){
-		e.addListener('click', function(){
-			step = 0;
-			var posit = e.getPosition();
-			map.setCenter(posit);
-			document.getElementById('wrapper').classList.remove('nowidth');
-			posit = {lat: posit.lat(), lng: posit.lng()};
-			var theSpot;
-
-			allSpots.forEach(function(e){
-				if (e.latLng.lat === posit.lat && e.latLng.lng === posit.lng){
-					return theSpot = e;
-				}
-			});
-
-
-			var links = theSpot.photo;
-
-
-			while (document.getElementById('image-wrapper').childNodes.length > 4) {
-				document.getElementById('image-wrapper').lastChild.remove();
+		function slideRight(quantity, photos) {
+			if (step === (quantity - 1)) {
+				step = 0;
+				photos[0].style.opacity = '1';
+				photos[photos.length - 1].style.opacity = '0';
+			} else {
+				photos[step].style.opacity = '0';
+				step++;
+				photos[step].style.opacity = '1';
 			}
-			if (links.length > 0 ) {
-				links.forEach(function(e,i){
-					if(links.length === 1){
-						document.querySelector('.right').style.display = 'none';
-						document.querySelector('.left').style.display = 'none';
-					} else {
-						document.querySelector('.right').style.display = 'inline-block';
-						document.querySelector('.left').style.display = 'inline-block';
+		}
+
+
+		var markers = latLngs.map(function (location) {
+			return new google.maps.Marker({
+				position: location
+			});
+		});
+
+		markers.forEach(function (e) {
+			e.addListener('click', function () {
+				step = 0;
+				var posit = e.getPosition();
+				map.setCenter(posit);
+				document.getElementById('wrapper').classList.remove('nowidth');
+				posit = {
+					lat: posit.lat(),
+					lng: posit.lng()
+				};
+				var theSpot;
+
+				allSpots.forEach(function (e) {
+					if (e.latLng.lat === posit.lat && e.latLng.lng === posit.lng) {
+						return theSpot = e;
 					}
-						
-					var elm = document.createElement('div');
-					elm.className = 'slider';
-					elm.setAttribute('id', ('image-div' + i));
-					elm.style.backgroundImage = 'url('+e+')';
-					document.getElementById('image-wrapper').appendChild(elm);
 				});
-			}  else if (links.length === 0) {
+
+
+				var links = theSpot.photo;
+
+
+				while (document.getElementById('image-wrapper').childNodes.length > 4) {
+					document.getElementById('image-wrapper').lastChild.remove();
+				}
+				if (links.length > 0) {
+					links.forEach(function (e, i) {
+						if (links.length === 1) {
+							document.querySelector('.right').style.display = 'none';
+							document.querySelector('.left').style.display = 'none';
+						} else {
+							document.querySelector('.right').style.display =
+							'inline-block';
+							document.querySelector('.left').style.display = 'inline-block';
+						}
+
+						var elm = document.createElement('div');
+						elm.className = 'slider';
+						elm.setAttribute('id', ('image-div' + i));
+						elm.style.backgroundImage = 'url(' + e + ')';
+						document.getElementById('image-wrapper').appendChild(elm);
+					});
+				} else if (links.length === 0) {
 					document.querySelector('.right').style.display = 'none';
 					document.querySelector('.left').style.display = 'none';
 					var elm = document.createElement('div');
 					elm.className = 'no-photos';
 					elm.setAttribute('id', 'no-photo-div');
-					elm.innerHTML = '<p>Masz zdjęcie tego spota?</p><p>Dodaj je <a href="/spot/addPhoto/'+theSpot._id+'" >tutaj</a></p>'
+					elm.innerHTML =
+						'<p>Masz zdjęcie tego spota?</p><p>Dodaj je <a href="/spot/addPhoto/' +
+						theSpot._id + '" >tutaj</a></p>'
 					document.getElementById('image-wrapper').appendChild(elm);
-			}
+				}
 
-			var old_element = document.querySelector('.right');
-			var new_element = old_element.cloneNode(true);
-			old_element.parentNode.replaceChild(new_element, old_element);
-			var old_element = document.querySelector('.left');
-			var new_element = old_element.cloneNode(true);
-			old_element.parentNode.replaceChild(new_element, old_element);
+				var old_element = document.querySelector('.right');
+				var new_element = old_element.cloneNode(true);
+				old_element.parentNode.replaceChild(new_element, old_element);
+				var old_element = document.querySelector('.left');
+				var new_element = old_element.cloneNode(true);
+				old_element.parentNode.replaceChild(new_element, old_element);
 
-			if (links.length > 0 ) {
-				document.querySelector('.right').addEventListener('click', slideRight.bind(this, links.length, document.getElementsByClassName('slider')));
-				document.querySelector('.left').addEventListener('click', slideLeft.bind(this, links.length, document.getElementsByClassName('slider')));
-			}
+				if (links.length > 0) {
+					document.querySelector('.right').addEventListener('click', slideRight.bind(
+						this, links.length, document.getElementsByClassName('slider')));
+					document.querySelector('.left').addEventListener('click', slideLeft.bind(this,
+						links.length, document.getElementsByClassName('slider')));
+				}
 
-			document.getElementById('tittleOfSpot').innerText = theSpot.name;
-			document.getElementById('showcase-address').innerHTML = theSpot.address + '<p><a target="_blank" href="https://maps.google.com/maps/place/'+theSpot.latLng.lat  +','+ theSpot.latLng.lng +'/@'+theSpot.latLng.lat  +','+ theSpot.latLng.lng +',12z" ><i id="compass" class="mt-2 fas fa-compass"></i></a></p>';
-			document.getElementById('descriptionOfSpot').innerText = theSpot.description;
-			document.getElementById('ownerOfSpot').innerText = theSpot.author.username;
-			document.getElementById('surfaceScoreOfSpot').innerText = theSpot.surface;
-			function iterator(obj) {
-				if (!theSpot.obstacles){
-					let keyItem = document.createElement('span');
-					keyItem.innerHTML = 'brak';
-					document.getElementById('tagsOfSpot').appendChild(keyItem);	
-				} else {
-					for (let key in obj ) {
+				document.getElementById('tittleOfSpot').innerText = theSpot.name;
+				document.getElementById('showcase-address').innerHTML = theSpot.address +
+					'<p><a target="_blank" href="https://maps.google.com/maps/place/' + theSpot
+					.latLng.lat + ',' + theSpot.latLng.lng + '/@' + theSpot.latLng.lat + ',' +
+					theSpot.latLng.lng +
+					',12z" ><i id="compass" class="mt-2 fas fa-compass"></i></a></p>';
+				document.getElementById('descriptionOfSpot').innerText = theSpot.description;
+				document.getElementById('ownerOfSpot').innerText = theSpot.author.username;
+				document.getElementById('surfaceScoreOfSpot').innerText = theSpot.surface;
+
+				function iterator(obj) {
+					if (!theSpot.obstacles) {
 						let keyItem = document.createElement('span');
-						keyItem.innerText = key;
-						document.getElementById('tagsOfSpot').appendChild(keyItem);			
+						keyItem.innerHTML = 'brak';
+						document.getElementById('tagsOfSpot').appendChild(keyItem);
+					} else {
+						for (let key in obj) {
+							let keyItem = document.createElement('span');
+							keyItem.innerText = key;
+							document.getElementById('tagsOfSpot').appendChild(keyItem);
+						}
 					}
 				}
-			}
-			
-			iterator(theSpot.obstacles);
 
-			while (document.getElementById('tagsOfSpot').firstChild) {
-				document.getElementById('tagsOfSpot').firstChild.remove();
-			}
-			iterator(theSpot.obstacles);
-			// document.getElementById('showcaseOfSpot').href = '/spot/showcase/' + theSpot._id;
+				iterator(theSpot.obstacles);
 
+				while (document.getElementById('tagsOfSpot').firstChild) {
+					document.getElementById('tagsOfSpot').firstChild.remove();
+				}
+				iterator(theSpot.obstacles);
+				// document.getElementById('showcaseOfSpot').href = '/spot/showcase/' + theSpot._id;
+
+			});
 		});
+
+		var markerCluster = new MarkerClusterer(map, markers, {
+			imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+		});
+
+		document.getElementById('hide').addEventListener('click', function () {
+			document.getElementById('wrapper').classList.add('nowidth');
+		});
+
+
 	});
-
-	var markerCluster = new MarkerClusterer(map, markers,{
-		imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-	});
-
-	document.getElementById('hide').addEventListener('click', function(){
-		document.getElementById('wrapper').classList.add('nowidth');
-	});	
-	
-
-});
 </script>
-              <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-              </script>
-               <script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_MAPS_PLACES_API_KEY%>&callback=initMap"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script defer type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.GOOGLE_MAPS_PLACES_API_KEY%>&callback=initMap">
+</script>
 
 <% include ./partials/footer.ejs %>

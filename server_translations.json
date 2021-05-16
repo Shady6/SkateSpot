@@ -1,0 +1,82 @@
+{
+    "admin-route-error": {
+        "en": "Admin route error",
+        "pl": "Błąd ścieżka admin"
+    },
+    "not-admin": {
+        "en": "You're not an administrator",
+        "pl": "Niestety, ale nie jesteś adminem"
+    },
+    "logged-out": {
+        "en": "Logged out",
+        "pl": "Wylogowano"
+    },
+    "spot-route-error": {
+        "en": "Spot route error",
+        "pl": "Błąd ścieżka spot all"
+    },
+    "spot-no-name": {
+        "en": "You must add the spot name",
+        "pl": "Musisz dodać nazwę spota"
+    },
+    "name-too-long": {
+        "en": "Name of the spot is too long or too short",
+        "pl": "Nazwa spota zbyt długa lub zbyt krótka"
+    },
+    "description-too-long": {
+        "en": "Description is too long",
+        "pl": "Opis zbyt długi"
+    },
+    "photos-err": {
+        "en": "You can add up to 5 photos",
+        "pl": "Możesz dodać maksymalnie 5 zdjęć"
+    },
+    "mark-err": {
+        "en": "You need to mark the spot on the map",
+        "pl": "Musisz zaznaczyć spota na mapie"
+    },
+    "surface-err": {
+        "en": "The surface score can't be more than 10",
+        "pl": "Ocena nie może być większa niż 10"
+    },
+    "verif-waiting": {
+        "en": "Spot has been added and is waiting for verification",
+        "pl": "Spot dodany, oczekuje na weryfikacje"
+    },
+    "no-photos": {
+        "en": "You didn't add any photos",
+        "pl": "Nie dodałeś żadnego zdjęcia"
+    },    
+    "photos-verif": {
+        "en": "The photots are waiting for verification",
+        "pl": "Zdjęcia oczekują na weryfikacje"
+    },
+    "not-logged-in": {
+        "en": "You need to be logged in to do it",
+        "pl": "Musisz być zalogowany, żeby to zrobić"
+    },
+    "email-taken": {
+        "en": "Email already used by somebody",
+        "pl": "Ten email jest już zajęty"
+    },
+    "pass-short": {
+        "en": "Password needs to be at least 6 characters long",
+        "pl": "Hasło musi mieć przynajmniej 6 znaków"
+    },
+    "pass-match": {
+        "en": "Passwords don't match",
+        "pl": "Hasła się nie zgadzają"
+    },
+    "no-username": {
+        "en": "You need to input username",
+        "pl": "Musisz wprowadzić nazwę użytkownika"
+    },
+    "username-short": {
+        "en": "Username needs to have at least 3 characters",
+        "pl": "Nazwa użytkownika musi zawierać conajmniej 3 znaki"
+    },
+    "email-pass-err": {
+        "en": "Incorrect email or password",
+        "pl": "Niepoprawne hasło lub email"
+    }
+}
